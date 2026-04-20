@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mood Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>😊 Daily Mood Tracker</h1>
+
+<form action="/add" method="post">
+    <select name="mood">
+        <option>Happy</option>
+        <option>Sad</option>
+        <option>Angry</option>
+        <option>Tired</option>
+    </select>
+    <button type="submit">Submit Mood</button>
+</form>
+
+{% if quote %}
+    <div class="quote">💬 {{ quote }}</div>
+{% endif %}
+
+<div class="history">
+    <h2>📋 Mood History</h2>
+    {% for m in data %}
+        <div class="item">
+            {{ m[1] }} — {{ m[2] }}
+        </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>
